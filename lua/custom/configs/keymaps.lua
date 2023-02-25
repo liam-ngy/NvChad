@@ -171,7 +171,7 @@ require("legendary").setup {
 
     -- Github Copilot
     {
-      "<C-Tab>",
+      "<C-,>",
       { i = "<esc>:Copilot panel<CR>" },
       description = "Open Github Copilot panel",
       opts = silent_opts,
