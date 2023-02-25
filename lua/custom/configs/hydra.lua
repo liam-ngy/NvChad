@@ -50,7 +50,7 @@ local hint = [[
  _[_: prev hunk   _u_: undo last stage   _p_: preview hunk   _B_: blame show full 
  ^ ^              _S_: stage buffer      ^ ^                 _/_: show base file
  ^
- ^ ^              _<Enter>_: Neogit              _<Esc>_: exit
+ ^ ^              _<Enter>_: LazyGit              _<Esc>_: exit
 ]]
 
 local gitsigns = require "gitsigns"
@@ -123,7 +123,7 @@ Hydra {
       { desc = "blame show full" },
     },
     { "/", gitsigns.show, { exit = true, desc = "show base file" } }, -- show the base of the file
-    { "<Enter>", "<Cmd>Neogit<CR>", { exit = true, desc = "Neogit" } },
+    { "<Enter>", "<Cmd>LazyGit<CR>", { exit = true, desc = "LazyGit" } },
     { "<Esc>", nil, { exit = true, nowait = true, desc = "exit" } },
   },
 }
