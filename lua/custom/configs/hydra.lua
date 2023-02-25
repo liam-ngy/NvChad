@@ -14,7 +14,7 @@ Hydra {
 }
 
 Hydra {
-  name = "Moving windows",
+  name = "Resizing windows",
   mode = "n",
   config = {
     hint = false,
