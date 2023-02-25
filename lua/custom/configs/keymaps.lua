@@ -4,6 +4,7 @@ require("legendary").setup {
     -- Legendary
     -- { "<C-/>", ":Legendary<cr>", description = "Open Legendary panep", opts = silent_opts },
     { ",a", "ggVG", description = "Select all" },
+    { ",cp", ":lua require('telescope').extensions.neoclip.default()<cr>", description = "Open Clipboard" },
     {
       "<leader><Enter>",
       ":call append(line('.'), '')<cr>",

@@ -49,6 +49,27 @@ local plugins = {
   },
 
   -- Install a plugin
+
+  -- TODO: Think about a solution
+  {
+    "Shatur/neovim-session-manager",
+    event = "VimEnter",
+    config = function()
+      require "custom.configs.session"
+    end,
+  },
+
+  {
+    "AckslD/nvim-neoclip.lua",
+    event = "BufReadPost",
+    requires = {
+      { "nvim-telescope/telescope.nvim" },
+    },
+    config = function()
+      require("neoclip").setup()
+    end,
+  },
+
   {
     "max397574/better-escape.nvim",
     event = "InsertEnter",
@@ -301,15 +322,15 @@ local plugins = {
   },
 
   -- TODO: Fix it
-  -- {
-  --   "github/copilot.vim",
-  --   event = "InsertEnter",
-  --   cmd = "Copilot",
-  --   config = function()
-  --     vim.g.copilot_no_tab_map = true
-  --     vim.api.nvim_set_keymap("i", "<C-Enter>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
-  --   end,
-  -- },
+  {
+    "github/copilot.vim",
+    lazy = false,
+    cmd = "Copilot",
+    config = function()
+      vim.g.copilot_no_tab_map = true
+      vim.api.nvim_set_keymap("i", "<C-Enter>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+    end,
+  },
 
   -- To make a plugin not be loaded
   -- {

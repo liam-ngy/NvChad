@@ -28,7 +28,6 @@ M.disabled = {
     -- Terminal
     ["<leader>h"] = "",
     ["<leader>v"] = "",
-    ff
     -- LSP disabling
     -- ["gD"] = "",
     -- ["gd"] = "",
@@ -60,6 +59,12 @@ M.lspconfig = {
         require("nvchad_ui.renamer").open()
       end,
       "LSP Rename",
+    },
+    ["K"] = {
+      function()
+        vim.lsp.buf.hover()
+      end,
+      "lsp hover",
     },
   },
 }
