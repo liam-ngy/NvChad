@@ -24,6 +24,8 @@ M.disabled = {
     ["<leader>ph"] = "",
     ["<leader>gb"] = "",
     ["<leader>td"] = "",
+    -- New buffer
+    ["<leader>b"] = "",
 
     -- Terminal
     ["<leader>h"] = "",
@@ -51,6 +53,7 @@ M.disabled = {
 M.general = {
   i = {
     ["<C-a>"] = { "<ESC>^i", "beginning of line" },
+    ["<leader>B"] = { "<cmd> enew <CR>", "new buffer" },
   },
   n = {},
 }
