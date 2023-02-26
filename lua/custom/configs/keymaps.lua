@@ -109,6 +109,7 @@ require("legendary").setup {
         },
         { "<leader>fh", ":Telescope help_tags<cr>", description = "Vim help", opts = silent_opts },
         { "<leader>fk", ":Telescope keymaps<cr>", description = "Keymaps", opts = silent_opts },
+        { "<leader>fd", ":Telescope diagnostics<cr>", description = "Show diagnostics", opts = silent_opts },
         { "<leader>fO", ":Telescope vim_options<cr>", description = "Vim Options", opts = silent_opts },
         {
           "<leader>f/",
