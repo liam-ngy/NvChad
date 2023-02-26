@@ -270,6 +270,15 @@ local plugins = {
   -- },
 
   {
+    'rmagatti/goto-preview',
+    event = "BufReadPost",
+    config = function()
+      require('goto-preview').setup {
+        default_mappings = false,
+      }
+    end
+  },
+  {
     "nvim-treesitter/nvim-treesitter-context",
     config = function()
       require "custom.configs.treesitter-context"

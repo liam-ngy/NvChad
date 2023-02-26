@@ -244,6 +244,12 @@ require("legendary").setup {
     --   },
     -- },
 
+    { "gpd", "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", description = "Preview definition", opts = silent_opts },
+    { "gr", "<cmd>lua require('goto-preview').goto_preview_references()<CR>", description = "Preview references", opts = silent_opts },
+    { "gpt", "<cmd>lua require('goto-preview').goto_preview_type_definition()<CR>", description = "Preview Type definition", opts = silent_opts },
+    { "gpi", "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>", description = "Preview implementation", opts = silent_opts },
+    { "gP", "<cmd>lua require('goto-preview').close_all_win()<CR>", description = "Close all preview windows", opts = silent_opts },
+
     { "<leader>so", ":SymbolsOutline<CR>", description = "Toggle Symbols Outline", opts = silent_opts },
     -- Harpoon
     {

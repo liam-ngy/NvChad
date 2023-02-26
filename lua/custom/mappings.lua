@@ -28,6 +28,9 @@ M.disabled = {
     -- Terminal
     ["<leader>h"] = "",
     ["<leader>v"] = "",
+    -- lsp
+
+    ["gr"] = "",
     -- LSP disabling
     -- ["gD"] = "",
     -- ["gd"] = "",
