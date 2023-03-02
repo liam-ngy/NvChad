@@ -53,9 +53,10 @@ M.disabled = {
 M.general = {
   i = {
     ["<C-a>"] = { "<ESC>^i", "beginning of line" },
+  },
+  n = {
     ["<leader>B"] = { "<cmd> enew <CR>", "new buffer" },
   },
-  n = {},
 }
 
 M.lspconfig = {

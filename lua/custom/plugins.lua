@@ -331,14 +331,22 @@ local plugins = {
   },
 
   -- TODO: Fix it
+  -- {
+  --   "github/copilot.vim",
+  --   -- init = function()
+  --     -- vim.g.copilot_no_tab_map = true
+  --     -- vim.api.nvim_set_keymap("i", "<C-Enter>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+  --   -- end,
+  --   lazy = false,
+  --   cmd = "Copilot",
+  -- },
   {
-    "github/copilot.vim",
-    init = function()
-      vim.g.copilot_no_tab_map = true
-      vim.api.nvim_set_keymap("i", "<C-Enter>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
-    end,
-    lazy = false,
+    "zbirenbaum/copilot.lua",
     cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("custom.configs.copilot")
+    end,
   },
 
   -- To make a plugin not be loaded
