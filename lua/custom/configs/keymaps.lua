@@ -35,9 +35,9 @@ require("legendary").setup {
 
     -- Illuminate
     -- alias alt + ]lsp
-    { "‘", ":lua require('illuminate').goto_next_reference()<cr>", "Move to next reference", opts = silent_opts },
+    -- { "‘", ":lua require('illuminate').goto_next_reference()<cr>", "Move to next reference", opts = silent_opts },
     -- alias alt + [
-    { "“", ":lua require('illuminate').goto_prev_reference()<cr>", "Move to previous reference", opts = silent_opts },
+    -- { "“", ":lua require('illuminate').goto_prev_reference()<cr>", "Move to previous reference", opts = silent_opts },
     -- alias alt + v
     { "√", ":lua require('illuminate').textobj_select()<cr>", "Select current txtobjct", opts = silent_opts },
 
@@ -244,11 +244,36 @@ require("legendary").setup {
     --   },
     -- },
 
-    { "gpd", "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", description = "Preview definition", opts = silent_opts },
-    { "gr", "<cmd>lua require('goto-preview').goto_preview_references()<CR>", description = "Preview references", opts = silent_opts },
-    { "gpt", "<cmd>lua require('goto-preview').goto_preview_type_definition()<CR>", description = "Preview Type definition", opts = silent_opts },
-    { "gpi", "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>", description = "Preview implementation", opts = silent_opts },
-    { "gP", "<cmd>lua require('goto-preview').close_all_win()<CR>", description = "Close all preview windows", opts = silent_opts },
+    {
+      "gpd",
+      "<cmd>lua require('goto-preview').goto_preview_definition()<CR>",
+      description = "Preview definition",
+      opts = silent_opts,
+    },
+    {
+      "gr",
+      "<cmd>lua require('goto-preview').goto_preview_references()<CR>",
+      description = "Preview references",
+      opts = silent_opts,
+    },
+    {
+      "gpt",
+      "<cmd>lua require('goto-preview').goto_preview_type_definition()<CR>",
+      description = "Preview Type definition",
+      opts = silent_opts,
+    },
+    {
+      "gpi",
+      "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>",
+      description = "Preview implementation",
+      opts = silent_opts,
+    },
+    {
+      "gP",
+      "<cmd>lua require('goto-preview').close_all_win()<CR>",
+      description = "Close all preview windows",
+      opts = silent_opts,
+    },
 
     { "<leader>so", ":SymbolsOutline<CR>", description = "Toggle Symbols Outline", opts = silent_opts },
     -- Harpoon
@@ -345,7 +370,7 @@ require("legendary").setup {
         },
         {
           "<leader>xd",
-          ":TroubleToggle lsp_document_diagnostics<cr>",
+          ":TroubleToggle document_diagnostics<cr>",
           description = "Toggle document diagnostics",
           opts = silent_opts,
         },

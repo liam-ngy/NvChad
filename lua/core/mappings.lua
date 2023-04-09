@@ -184,7 +184,8 @@ M.lspconfig = {
       "lsp references",
     },
 
-    ["<leader>f"] = {
+    -- TODO: Overwrite default in custom file
+    ["<leader>d"] = {
       function()
         vim.diagnostic.open_float()
       end,

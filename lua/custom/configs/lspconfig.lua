@@ -3,14 +3,14 @@ local capabilities = require("plugins.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
 
-local servers = { "html", "cssls", "tsserver", "clangd", "elixirls" }
+local servers = { "html", "cssls", "tsserver", "elixirls", "emmet_ls" }
 for _, lsp in ipairs(servers) do
-  if lsp == "elixirls" then
-    lspconfig[lsp].setup {
-      on_attach = on_attach,
-      capabilities = capabilities,
-    }
-  end
+  -- if lsp == "elixirls" then
+  lspconfig[lsp].setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
+  -- end
   local path_to_elixirls = vim.fn.expand "/Users/liam.ng/Projects/elixir-ls/release/language_server.sh"
 
   lspconfig.elixirls.setup {
@@ -32,3 +32,9 @@ for _, lsp in ipairs(servers) do
     },
   }
 end
+
+lspconfig["emmet_ls"].setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte", "heex", "eex" },
+}

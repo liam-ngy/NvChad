@@ -21,6 +21,22 @@ require("noice").setup {
     {
       filter = {
         event = "msg_show",
+        kind = "",
+        find = "lines",
+      },
+      opts = { skip = true },
+    },
+    {
+      filter = {
+        event = "msg_show",
+        kind = "",
+        find = "line",
+      },
+      opts = { skip = true },
+    },
+    {
+      filter = {
+        event = "msg_show",
         find = "%d+L, %d+B",
       },
       view = "mini",

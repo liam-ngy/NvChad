@@ -214,6 +214,22 @@ local plugins = {
     cmd = "LazyGit",
   },
   {
+
+    -- Basic usage:
+    --
+    -- select words with Ctrl-N (like Ctrl-d in Sublime Text/VS Code)
+    -- create cursors vertically with Ctrl-Down/Ctrl-Up
+    -- select one character at a time with Shift-Arrows
+    -- press n/N to get next/previous occurrence
+    -- press [/] to select next/previous cursor
+    -- press q to skip current and get next occurrence
+    -- press Q to remove current cursor/selection
+    -- start insert mode with i,a,I,A
+    -- Two main modes:
+    --
+    -- in cursor mode commands work as they would in normal mode
+    -- in extend mode commands work as they would in visual mode
+    -- press Tab to switch between «cursor» and «extend» mode
     "mg979/vim-visual-multi",
     event = "BufReadPost",
   },
@@ -270,13 +286,13 @@ local plugins = {
   -- },
 
   {
-    'rmagatti/goto-preview',
+    "rmagatti/goto-preview",
     event = "BufReadPost",
     config = function()
-      require('goto-preview').setup {
+      require("goto-preview").setup {
         default_mappings = false,
       }
-    end
+    end,
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
@@ -340,14 +356,14 @@ local plugins = {
   --   lazy = false,
   --   cmd = "Copilot",
   -- },
-  {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    config = function()
-      require("custom.configs.copilot")
-    end,
-  },
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   cmd = "Copilot",
+  --   event = "InsertEnter",
+  --   config = function()
+  --     require("custom.configs.copilot")
+  --   end,
+  -- },
 
   -- To make a plugin not be loaded
   -- {
