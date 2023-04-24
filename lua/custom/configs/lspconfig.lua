@@ -38,3 +38,7 @@ lspconfig["emmet_ls"].setup {
   on_attach = on_attach,
   filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte", "heex", "eex" },
 }
+
+local navbuddy = require "nvim-navbuddy"
+
+navbuddy.setup()
