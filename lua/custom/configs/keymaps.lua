@@ -35,9 +35,9 @@ require("legendary").setup {
 
     -- Illuminate
     -- alias alt + ]lsp
-    -- { "‘", ":lua require('illuminate').goto_next_reference()<cr>", "Move to next reference", opts = silent_opts },
+    { "‘", ":lua require('illuminate').goto_next_reference()<cr>", "Move to next reference", opts = silent_opts },
     -- alias alt + [
-    -- { "“", ":lua require('illuminate').goto_prev_reference()<cr>", "Move to previous reference", opts = silent_opts },
+    { "“", ":lua require('illuminate').goto_prev_reference()<cr>", "Move to previous reference", opts = silent_opts },
     -- alias alt + v
     { "√", ":lua require('illuminate').textobj_select()<cr>", "Select current txtobjct", opts = silent_opts },
 
@@ -70,6 +70,8 @@ require("legendary").setup {
       opts = { silent = true },
     },
 
+    -- Navbuddy
+    { "<leader>n", ":Navbuddy<CR>", description = "Navigate with Navbuddy", opts = { silent = true } },
     -- Notification
     {
       ",h",
@@ -275,7 +277,7 @@ require("legendary").setup {
       opts = silent_opts,
     },
 
-    { "<leader>so", ":SymbolsOutline<CR>", description = "Toggle Symbols Outline", opts = silent_opts },
+    -- { "<leader>so", ":SymbolsOutline<CR>", description = "Toggle Symbols Outline", opts = silent_opts },
     -- Harpoon
     {
       itemgroup = "Harpoon",
@@ -384,5 +386,73 @@ require("legendary").setup {
         },
       },
     },
+    {
+      itemgroup = "DAP",
+      keymaps = {
+
+        { "<leader>dR", ":lua require'dap'.run_to_cursor()<cr>", description = "Run to cursor", opts = silent_opts },
+        {
+          "<leader>dE",
+          ":lua require'dapui'.eval(vim.fn.input '[Expression] > ')<cr>",
+          description = "Evaluate Input",
+          opts = silent_opts,
+        },
+        {
+          "<leader>dC",
+          ":lua require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')<cr>",
+          description = "Conditional Breakpoint",
+          opts = silent_opts,
+        },
+        { "<leader>dU", "<cmd>lua require'dapui'.toggle()<cr>", description = "Toggle UI", opts = silent_opts },
+        { "<leader>db", ":lua require'dap'.step_back()<cr>", description = "Step Back", opts = silent_opts },
+        { "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", description = "Continue", opts = silent_opts },
+        { "<leader>dd", "<cmd>lua require'dap'.disconnect()<cr>", description = "Disconnect", opts = silent_opts },
+        { "<leader>de", "<cmd>lua require'dapui'.eval()<cr>", description = "Evaluate", opts = silent_opts },
+        { "<leader>dg", "<cmd>lua require'dap'.session()<cr>", description = "Get Session", opts = silent_opts },
+        {
+          "<leader>dh",
+          "<cmd>lua require'dap.ui.widgets'.hover()<cr>",
+          description = "Hover Variables",
+          opts = silent_opts,
+        },
+        { "<leader>dS", "<cmd>lua require'dap.ui.widgets'.scopes()<cr>", description = "Scopes", opts = silent_opts },
+        { "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", description = "Step Into", opts = silent_opts },
+        { "<leader>do", "<cmd>lua require'dap'.step_over()<cr>", description = "Step Over", opts = silent_opts },
+        { "<leader>dp", "<cmd>lua require'dap'.pause.toggle()<cr>", description = "Pause", opts = silent_opts },
+        { "<leader>dq", "<cmd>lua require'dap'.close()<cr>", "Quit", opts = silent_opts },
+        { "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", description = "Toggle Repl", opts = silent_opts },
+        { "<leader>ds", "<cmd>lua require'dap'.continue()<cr>", description = "Start", opts = silent_opts },
+        {
+          "<leader>dt",
+          "<cmd>lua require'dap'.toggle_breakpoint()<cr>",
+          description = "Toggle Breakpoint",
+          opts = silent_opts,
+        },
+        { "<leader>dx", "<cmd>lua require'dap'.terminate()<cr>", description = "Terminate", opts = silent_opts },
+        { "<leader>du", "<cmd>lua require'dap'.step_out()<cr>", description = "Step Out", opts = silent_opts },
+        {
+          "<leader>dv",
+          "<cmd>lua local widgets = require 'dap.ui.widgets'; local sidebar = widgets.sidebar(widgets.scopes); sidebar.open()<cr>",
+          description = "Sidebar",
+          opts = silent_opts,
+        },
+      },
+    },
   },
 }
+
+--   local keymap_v = {
+--     d = {
+--       name = "Debug",
+--       e = { "<cmd>lua require'dapui'.eval()<cr>", "Evaluate" },
+--     },
+--   }
+--   whichkey.register(keymap_v, {
+--     mode = "v",
+--     prefix = "<leader>",
+--     buffer = nil,
+--     silent = true,
+--     noremap = true,
+--     nowait = false,
+--   })
+-- end

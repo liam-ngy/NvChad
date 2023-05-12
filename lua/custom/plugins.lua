@@ -87,6 +87,11 @@ local plugins = {
   },
 
   {
+    "https://github.com/christoomey/vim-tmux-navigator",
+    lazy = false,
+  },
+
+  {
     "echasnovski/mini.nvim",
     event = "BufReadPost",
     config = function()
@@ -317,13 +322,13 @@ local plugins = {
       require("lsp_signature").setup()
     end,
   },
-  {
-    "simrat39/symbols-outline.nvim",
-    event = "BufReadPost",
-    config = function()
-      require("symbols-outline").setup()
-    end,
-  },
+  -- {
+  --   "simrat39/symbols-outline.nvim",
+  --   event = "BufReadPost",
+  --   config = function()
+  --     require("symbols-outline").setup()
+  --   end,
+  -- },
 
   {
     "mhanberg/elixir.nvim",
@@ -352,6 +357,46 @@ local plugins = {
       "antoinemadec/FixCursorHold.nvim",
       "jfpedroza/neotest-elixir",
     },
+  },
+
+  {
+    "simrat39/rust-tools.nvim",
+    event = "BufReadPost",
+    config = function()
+      require "custom.configs.rust-tools"
+    end,
+  },
+
+  -- Debug NVIM DAP
+  {
+    "mfussenegger/nvim-dap",
+    event = "BufReadPost",
+    requires = {
+      -- "Pocco81/DAPInstall.nvim",
+      "theHamsta/nvim-dap-virtual-text",
+      "rcarriga/nvim-dap-ui",
+      "nvim-telescope/telescope-dap.nvim",
+      { "jbyuki/one-small-step-for-vimkind", module = "osv" },
+    },
+    config = function()
+      require("custom.configs.dap").setup()
+    end,
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    event = "BufReadPost",
+    requires = { "mfussenegger/nvim-dap" },
+  },
+
+  {
+    "theHamsta/nvim-dap-virtual-text",
+    event = "BufReadPost",
+    requires = { "mfussenegger/nvim-dap" },
+  },
+  {
+    "nvim-telescope/telescope-dap.nvim",
+    event = "BufReadPost",
+    requires = { "mfussenegger/nvim-dap" },
   },
 
   {

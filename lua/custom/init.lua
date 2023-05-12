@@ -24,4 +24,4 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
   end,
 })
 
-vim.g.user_emmet_leader_key = "µ"
+vim.g.user_emmet_leader_key = "Â"

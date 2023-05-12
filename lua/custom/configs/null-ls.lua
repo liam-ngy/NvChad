@@ -20,6 +20,8 @@ local sources = {
 
   -- elixir
   b.formatting.mix,
+
+  b.formatting.rustfmt,
 }
 
 -- to setup format on save
