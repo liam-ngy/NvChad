@@ -14,6 +14,10 @@ M.ui = {
   cmp = {
     border_color = "red",
   },
+
+  statusline = {
+    theme = "vscode_colored",
+  },
 }
 
 M.plugins = "custom.plugins"

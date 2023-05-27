@@ -11,6 +11,12 @@ require("legendary").setup {
       description = "Insert new line and stay in Normal mode",
       opts = silent_opts,
     },
+    -- {
+    --   "<C-Enter>",
+    --   "<C-e><CR>",
+    --   description = "Skip cmp and insert newline",
+    --   opts = silent_opts,
+    -- },
     {
       "<leader><S-Enter>",
       ":call append(line('.')-1, '')<cr>",
@@ -42,14 +48,14 @@ require("legendary").setup {
     { "√", ":lua require('illuminate').textobj_select()<cr>", "Select current txtobjct", opts = silent_opts },
 
     -- Terminal
+    -- {
+    --   "<leader>Tt",
+    --   ":ToggleTerm direction=tab<CR>",
+    --   description = "Open terminal in new tab",
+    --   opts = silent_opts,
+    -- },
     {
-      "<leader>Tt",
-      ":ToggleTerm direction=tab<CR>",
-      description = "Open terminal in new tab",
-      opts = silent_opts,
-    },
-    {
-      "<leader>Tf",
+      "«",
       ":ToggleTerm direction=float<CR>",
       description = "Open terminal in float",
       opts = silent_opts,
@@ -57,7 +63,7 @@ require("legendary").setup {
 
     -- Window management
     { "<C-w>m", ":MaximizerToggle<cr>", description = "Maximize current window", opts = silent_opts },
-    { ",w", ":close<cr>", description = "Close window", opts = silent_opts },
+    { "<leader>q", ":close<cr>", description = "Close window", opts = silent_opts },
 
     -- Nerd tree
     { "<leader>0", ":NvimTreeToggle<CR>", description = "Toggle Nerdtree", opts = { silent = true } },
@@ -72,6 +78,11 @@ require("legendary").setup {
 
     -- Navbuddy
     { "<leader>n", ":Navbuddy<CR>", description = "Navigate with Navbuddy", opts = { silent = true } },
+
+    -- Undotree
+    { "<leader>uu", ":UndotreeToggle<CR>", description = "UndotreeToggle", opts = { silent = true } },
+    { "<leader>uf", ":UndotreeFocus<CR>", description = "Undotree focus", opts = { silent = true } },
+
     -- Notification
     {
       ",h",
@@ -181,101 +192,125 @@ require("legendary").setup {
     },
 
     -- LSP
-    -- {
-    --   itemgroup = "LSP",
-    --   keymaps = {
-    --
-    --     {
-    --       "gR",
-    --       ":Lspsagl lsp_finder<CR>",
-    --       desgription = "Show definition and references",
-    --       opts = silent_opts,
-    --     },
-    --     {
-    --       "gd",
-    --       ":Lspsaga peek_definition<CR>",
-    --       description = "Peek definition and make edits in window",
-    --       opts = silent_opts,
-    --     },
-    --     { "gD", ":Lspsaga goto_definition<CR>", description = "Go to definition", opts = silent_opts },
-    --     {
-    --       "gi",
-    --       ":lua vim.lsp.buf.implementation()<CR>",
-    --       description = "Go to implementation",
-    --       opts = silent_opts,
-    --     },
-    --     { "<leader>ca", ":Lspsaga code_action<CR>", description = "Run code action", opts = silent_opts },
-    --     { "grn", ":Lspsaga rename<CR>", description = "Smart rename action", opts = silent_opts },
-    --     {
-    --       "<leader>D",
-    --       ":Lspsaga show_line_diagnostics<CR>",
-    --       description = "Show line diagnostics",
-    --       opts = silent_opts,
-    --     },
-    --     {
-    --       "<leader>d",
-    --       ":Lspsaga show_cursor_diagnostics<CR>",
-    --       description = "Show cursor diagnostics",
-    --       opts = silent_opts,
-    --     },
-    --     {
-    --       "[d",
-    --       ":Lspsaga diagnostic_jump_prev<CR>",
-    --       description = "Jump to previous diagnostic",
-    --       opts = silent_opts,
-    --     },
-    --     {
-    --       "]d",
-    --       ":Lspsaga diagnostic_jump_next<CR>",
-    --       description = "Jump to next diagnostic",
-    --       opts = silent_opts,
-    --     },
-    --     {
-    --       "gI",
-    --       ":Lspsaga hover_doc<CR>",
-    --       description = "Show documentation under cursor",
-    --       opts = silent_opts,
-    --     },
-    --     { "<leader>so", ":SymbolsOutline<CR>", description = "Toggle Symbols Outline", opts = silent_opts },
-    --     {
-    --       "K",
-    --       ":lua require('lsp_signature').toggle_float_win()<cr>",
-    --       description = "Toggle signature",
-    --       opts = silent_opts,
-    --     },
-    --   },
-    -- },
+    {
+      itemgroup = "LSP",
+      keymaps = {
 
-    {
-      "gpd",
-      "<cmd>lua require('goto-preview').goto_preview_definition()<CR>",
-      description = "Preview definition",
-      opts = silent_opts,
+        {
+          "gp",
+          ":Lspsaga peek_definition<CR>",
+          description = "Peek definition and make edits in window",
+          opts = silent_opts,
+        },
+        {
+          "gd",
+          "<cmd>Lspsaga goto_definition<CR>",
+          description = "Go to definition",
+          opts = silent_opts,
+        },
+        {
+          "gr",
+          ":Lspsaga lsp_finder<CR>",
+          description = "Show definition and references",
+          opts = silent_opts,
+        },
+        { "gt", "<cmd>Lspsaga goto_type_definition<CR>", description = "Go to type definition", opts = silent_opts },
+        {
+          "gi",
+          ":lua vim.lsp.buf.implementation()<CR>",
+          description = "Go to implementation",
+          opts = silent_opts,
+        },
+        { "<leader>ca", ":Lspsaga code_action<CR>", description = "Run code action", opts = silent_opts },
+        { "gR", ":Lspsaga rename<CR>", description = "Smart rename action", opts = silent_opts },
+        {
+          "<leader>dd",
+          ":Lspsaga show_line_diagnostics<CR>",
+          description = "Show line diagnostics",
+          opts = silent_opts,
+        },
+        {
+          "<leader>dc",
+          ":Lspsaga show_cursor_diagnostics<CR>",
+          description = "Show cursor diagnostics",
+          opts = silent_opts,
+        },
+        {
+          "[d",
+          ":Lspsaga diagnostic_jump_prev<CR>",
+          description = "Jump to previous diagnostic",
+          opts = silent_opts,
+        },
+        {
+          "]d",
+          ":Lspsaga diagnostic_jump_next<CR>",
+          description = "Jump to next diagnostic",
+          opts = silent_opts,
+        },
+        {
+          "gI",
+          ":Lspsaga hover_doc<CR>",
+          description = "Show documentation under cursor",
+          opts = silent_opts,
+        },
+        { "<leader>so", ":SymbolsOutline<CR>", description = "Toggle Symbols Outline", opts = silent_opts },
+        {
+          "K",
+          "<cmd>Lspsaga hover_doc<CR>",
+          description = "Toggle signature",
+          opts = silent_opts,
+        },
+        {
+          "<leader>so",
+          "<cmd>Lspsaga outline<CR>",
+          description = "Symbols outline",
+          opts = silent_opts,
+        },
+        {
+          "<leader>rn",
+          "<cmd>Lspsaga rename<CR>",
+          description = "Rename",
+          opts = silent_opts,
+        },
+        -- {
+        --   "K",
+        --   ":lua require('lsp_signature').toggle_float_win()<cr>",
+        --   description = "Toggle signature",
+        --   opts = silent_opts,
+        -- },
+      },
     },
-    {
-      "gr",
-      "<cmd>lua require('goto-preview').goto_preview_references()<CR>",
-      description = "Preview references",
-      opts = silent_opts,
-    },
-    {
-      "gpt",
-      "<cmd>lua require('goto-preview').goto_preview_type_definition()<CR>",
-      description = "Preview Type definition",
-      opts = silent_opts,
-    },
-    {
-      "gpi",
-      "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>",
-      description = "Preview implementation",
-      opts = silent_opts,
-    },
-    {
-      "gP",
-      "<cmd>lua require('goto-preview').close_all_win()<CR>",
-      description = "Close all preview windows",
-      opts = silent_opts,
-    },
+
+    -- {
+    --   "gpd",
+    --   "<cmd>lua require('goto-preview').goto_preview_definition()<CR>",
+    --   description = "Preview definition",
+    --   opts = silent_opts,
+    -- },
+    -- {
+    --   "gr",
+    --   "<cmd>lua require('goto-preview').goto_preview_references()<CR>",
+    --   description = "Preview references",
+    --   opts = silent_opts,
+    -- },
+    -- {
+    --   "gpt",
+    --   "<cmd>lua require('goto-preview').goto_preview_type_definition()<CR>",
+    --   description = "Preview Type definition",
+    --   opts = silent_opts,
+    -- },
+    -- {
+    --   "gpi",
+    --   "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>",
+    --   description = "Preview implementation",
+    --   opts = silent_opts,
+    -- },
+    -- {
+    --   "gP",
+    --   "<cmd>lua require('goto-preview').close_all_win()<CR>",
+    --   description = "Close all preview windows",
+    --   opts = silent_opts,
+    -- },
 
     -- { "<leader>so", ":SymbolsOutline<CR>", description = "Toggle Symbols Outline", opts = silent_opts },
     -- Harpoon
@@ -389,49 +424,83 @@ require("legendary").setup {
     {
       itemgroup = "DAP",
       keymaps = {
-
-        { "<leader>dR", ":lua require'dap'.run_to_cursor()<cr>", description = "Run to cursor", opts = silent_opts },
+        { ",dR", ":lua require'dap'.run_to_cursor()<cr>", description = "Run to cursor", opts = silent_opts },
         {
-          "<leader>dE",
+          ",dE",
           ":lua require'dapui'.eval(vim.fn.input '[Expression] > ')<cr>",
           description = "Evaluate Input",
           opts = silent_opts,
         },
         {
-          "<leader>dC",
+          ",dC",
           ":lua require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')<cr>",
           description = "Conditional Breakpoint",
           opts = silent_opts,
         },
-        { "<leader>dU", "<cmd>lua require'dapui'.toggle()<cr>", description = "Toggle UI", opts = silent_opts },
-        { "<leader>db", ":lua require'dap'.step_back()<cr>", description = "Step Back", opts = silent_opts },
-        { "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", description = "Continue", opts = silent_opts },
-        { "<leader>dd", "<cmd>lua require'dap'.disconnect()<cr>", description = "Disconnect", opts = silent_opts },
-        { "<leader>de", "<cmd>lua require'dapui'.eval()<cr>", description = "Evaluate", opts = silent_opts },
-        { "<leader>dg", "<cmd>lua require'dap'.session()<cr>", description = "Get Session", opts = silent_opts },
+        { ",dU", "<cmd>lua require'dapui'.toggle()<cr>", description = "Toggle UI", opts = silent_opts },
+        { ",db", ":lua require'dap'.step_back()<cr>", description = "Step Back", opts = silent_opts },
+        { ",dc", "<cmd>lua require'dap'.continue()<cr>", description = "Continue", opts = silent_opts },
+        { ",dd", "<cmd>lua require'dap'.disconnect()<cr>", description = "Disconnect", opts = silent_opts },
+        { ",de", "<cmd>lua require'dapui'.eval()<cr>", description = "Evaluate", opts = silent_opts },
+        { ",dg", "<cmd>lua require'dap'.session()<cr>", description = "Get Session", opts = silent_opts },
         {
-          "<leader>dh",
+          ",dh",
           "<cmd>lua require'dap.ui.widgets'.hover()<cr>",
           description = "Hover Variables",
           opts = silent_opts,
         },
-        { "<leader>dS", "<cmd>lua require'dap.ui.widgets'.scopes()<cr>", description = "Scopes", opts = silent_opts },
-        { "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", description = "Step Into", opts = silent_opts },
-        { "<leader>do", "<cmd>lua require'dap'.step_over()<cr>", description = "Step Over", opts = silent_opts },
-        { "<leader>dp", "<cmd>lua require'dap'.pause.toggle()<cr>", description = "Pause", opts = silent_opts },
-        { "<leader>dq", "<cmd>lua require'dap'.close()<cr>", "Quit", opts = silent_opts },
-        { "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", description = "Toggle Repl", opts = silent_opts },
-        { "<leader>ds", "<cmd>lua require'dap'.continue()<cr>", description = "Start", opts = silent_opts },
         {
-          "<leader>dt",
+          ",dS",
+          "<cmd>lua require'dap.ui.widgets'.scopes()<cr>",
+          description = "Scopes",
+          opts = silent_opts,
+        },
+        {
+          ",di",
+          "<cmd>lua require'dap'.step_into()<cr>",
+          description = "Step Into",
+          opts = silent_opts,
+        },
+        {
+          ",do",
+          "<cmd>lua require'dap'.step_over()<cr>",
+          description = "Step Over",
+          opts = silent_opts,
+        },
+        {
+          ",dp",
+          "<cmd>lua require'dap'.pause.toggle()<cr>",
+          description = "Pause",
+          opts = silent_opts,
+        },
+        {
+          ",dq",
+          "<cmd>lua require'dap'.close()<cr>",
+          "Quit",
+          opts = silent_opts,
+        },
+        {
+          ",dr",
+          "<cmd>lua require'dap'.repl.toggle()<cr>",
+          description = "Toggle Repl",
+          opts = silent_opts,
+        },
+        {
+          ",ds",
+          "<cmd>lua require'dap'.continue()<cr>",
+          description = "Start",
+          opts = silent_opts,
+        },
+        {
+          ",dt",
           "<cmd>lua require'dap'.toggle_breakpoint()<cr>",
           description = "Toggle Breakpoint",
           opts = silent_opts,
         },
-        { "<leader>dx", "<cmd>lua require'dap'.terminate()<cr>", description = "Terminate", opts = silent_opts },
-        { "<leader>du", "<cmd>lua require'dap'.step_out()<cr>", description = "Step Out", opts = silent_opts },
+        { ",dx", "<cmd>lua require'dap'.terminate()<cr>", description = "Terminate", opts = silent_opts },
+        { "du", "<cmd>lua require'dap'.step_out()<cr>", description = "Step Out", opts = silent_opts },
         {
-          "<leader>dv",
+          ",dv",
           "<cmd>lua local widgets = require 'dap.ui.widgets'; local sidebar = widgets.sidebar(widgets.scopes); sidebar.open()<cr>",
           description = "Sidebar",
           opts = silent_opts,

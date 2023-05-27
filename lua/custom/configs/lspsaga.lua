@@ -11,4 +11,10 @@ require("lspsaga").setup {
       normal_bg = "#022746",
     },
   },
+
+  finder = {
+    keys = {
+      expand_or_jump = "<CR>",
+    },
+  },
 }

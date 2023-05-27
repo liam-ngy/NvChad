@@ -33,15 +33,20 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+local path_to_sourcekit =
+  "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp"
+
+lspconfig.sourcekit.setup {
+  cmd = { path_to_sourcekit },
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
+
 lspconfig["emmet_ls"].setup {
   capabilities = capabilities,
   on_attach = on_attach,
   filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte", "heex", "eex" },
 }
-
-local navbuddy = require "nvim-navbuddy"
-
-navbuddy.setup()
 
 -- Rust
 

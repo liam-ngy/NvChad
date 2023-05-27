@@ -1,6 +1,7 @@
 local overrides = require "custom.configs.overrides"
 
 ---@type NvPluginSpec[]
+
 local plugins = {
 
   -- Override plugin definition options
@@ -36,7 +37,7 @@ local plugins = {
     "nvim-treesitter/nvim-treesitter",
     opts = overrides.treesitter,
   },
-
+  --
   {
     "williamboman/mason.nvim",
     opts = overrides.mason,
@@ -86,16 +87,17 @@ local plugins = {
     end,
   },
 
-  {
-    "https://github.com/christoomey/vim-tmux-navigator",
-    lazy = false,
-  },
+  -- {
+  --   "https://github.com/christoomey/vim-tmux-navigator",
+  --   lazy = false,
+  -- },
 
   {
     "echasnovski/mini.nvim",
     event = "BufReadPost",
     config = function()
       require("mini.bracketed").setup()
+      require("mini.splitjoin").setup()
     end,
   },
 
@@ -132,7 +134,6 @@ local plugins = {
       }
     end,
   },
-
   {
     "MunifTanjim/nui.nvim",
     lazy = false,
@@ -164,15 +165,15 @@ local plugins = {
     "rcarriga/nvim-notify",
     event = "VimEnter",
   },
-  {
-    {
-      "karb94/neoscroll.nvim",
-      event = "BufReadPost",
-      config = function()
-        require "custom.configs.neoscroll"
-      end,
-    },
-  },
+  -- {
+  --   {
+  --     "karb94/neoscroll.nvim",
+  --     event = "BufReadPost",
+  --     config = function()
+  --       require "custom.configs.neoscroll"
+  --     end,
+  --   },
+  -- },
   {
     "folke/trouble.nvim",
     event = "BufReadPost",
@@ -214,6 +215,13 @@ local plugins = {
     end,
   },
   {
+    "AckslD/muren.nvim",
+    event = "BufReadPost",
+    config = function()
+      require("muren").setup()
+    end,
+  },
+  {
     "ThePrimeagen/harpoon",
     event = "BufReadPost",
   },
@@ -227,7 +235,10 @@ local plugins = {
     cmd = "LazyGit",
   },
   {
-
+    "mbbill/undotree",
+    event = "BufReadPost",
+  },
+  {
     -- Basic usage:
     --
     -- select words with Ctrl-N (like Ctrl-d in Sublime Text/VS Code)
@@ -289,24 +300,46 @@ local plugins = {
 
   -- LSP
   -- TODO: Fix lspsaga
+  {
+    "glepnir/lspsaga.nvim",
+    event = "BufReadPost",
+    config = function()
+      require "custom.configs.lspsaga"
+    end,
+    -- cmd = "Lspsaga",
+    dependencies = {
+      { "nvim-tree/nvim-web-devicons" },
+      { "nvim-treesitter/nvim-treesitter" },
+    },
+  },
+
   -- {
-  --   "glepnir/lspsaga.nvim",
-  --   cmd = "Lspsaga",
-  --   dependencies = {
-  --     { "nvim-tree/nvim-web-devicons" },
-  --     { "nvim-treesitter/nvim-treesitter" },
-  --   },
+  --   "rmagatti/goto-preview",
+  --   event = "BufReadPost",
+  --   config = function()
+  --     require("goto-preview").setup {
+  --       default_mappings = false,
+  --     }
+  --   end,
   -- },
 
   {
-    "rmagatti/goto-preview",
-    event = "BufReadPost",
-    config = function()
-      require("goto-preview").setup {
-        default_mappings = false,
-      }
-    end,
+    "ray-x/guihua.lua",
+    run = "cd lua/fzy && make",
+    lazy = false,
   },
+
+  -- {
+  --   "liam-ngy/navigator.lua",
+  --   requires = {
+  --     { "ray-x/guihua.lua", run = "cd lua/fzy && make" },
+  --     { "neovim/nvim-lspconfig" },
+  --   },
+  --   config = function()
+  --     require "custom.configs.navigator"
+  --   end,
+  --   lazy = false,
+  -- },
   {
     "nvim-treesitter/nvim-treesitter-context",
     config = function()
@@ -315,13 +348,13 @@ local plugins = {
     event = "BufReadPost",
   },
 
-  {
-    "ray-x/lsp_signature.nvim",
-    event = "BufReadPost",
-    config = function()
-      require("lsp_signature").setup()
-    end,
-  },
+  -- {
+  --   "ray-x/lsp_signature.nvim",
+  --   event = "BufReadPost",
+  --   config = function()
+  --     require("lsp_signature").setup()
+  --   end,
+  -- },
   -- {
   --   "simrat39/symbols-outline.nvim",
   --   event = "BufReadPost",

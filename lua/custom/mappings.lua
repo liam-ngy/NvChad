@@ -32,7 +32,10 @@ M.disabled = {
     ["<leader>v"] = "",
     -- lsp
 
+    ["<leader>q"] = "",
     ["gr"] = "",
+    ["<leader>ca"] = "",
+    ["<leader>D"] = "",
     -- LSP disabling
     -- ["gD"] = "",
     -- ["gd"] = "",
@@ -61,18 +64,18 @@ M.general = {
 
 M.lspconfig = {
   n = {
-    ["<leader>rn"] = {
-      function()
-        require("nvchad_ui.renamer").open()
-      end,
-      "LSP Rename",
-    },
-    ["K"] = {
-      function()
-        vim.lsp.buf.hover()
-      end,
-      "lsp hover",
-    },
+    -- ["<leader>rn"] = {
+    --   function()
+    --     require("nvchad_ui.renamer").open()
+    --   end,
+    --   "LSP Rename",
+    -- },
+    -- ["K"] = {
+    --   function()
+    --     vim.lsp.buf.hover()
+    --   end,
+    --   "lsp hover",
+    -- },
   },
 }
 

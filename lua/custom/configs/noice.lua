@@ -4,12 +4,6 @@ require("noice").setup {
     long_message_to_split = true, -- long messages will be sent to a split
   },
   routes = {
-    -- {
-    -- 	filter = {
-    -- 		event = "msg_show",
-    -- 		find = "<Esc>: exit",
-    -- 	},
-    -- },
     {
       filter = {
         event = "msg_show",
@@ -30,7 +24,39 @@ require("noice").setup {
       filter = {
         event = "msg_show",
         kind = "",
+        find = "more line",
+      },
+      opts = { skip = true },
+    },
+    {
+      filter = {
+        event = "msg_show",
+        kind = "",
+        find = "yanked",
+      },
+      opts = { skip = true },
+    },
+    {
+      filter = {
+        event = "msg_show",
+        kind = "",
         find = "line",
+      },
+      opts = { skip = true },
+    },
+    {
+      filter = {
+        event = "msg_show",
+        kind = "",
+        find = "lines yanked",
+      },
+      opts = { skip = true },
+    },
+    {
+      filter = {
+        event = "msg_show",
+        kind = "",
+        find = "fewer lines",
       },
       opts = { skip = true },
     },
@@ -50,6 +76,10 @@ require("noice").setup {
       opts = { enter = true, format = "details" },
       filter = {},
     },
+  },
+
+  messages = {
+    view = "mini",
   },
 
   lsp = {
