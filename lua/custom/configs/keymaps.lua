@@ -422,6 +422,12 @@ require("legendary").setup {
       },
     },
     {
+      itemgroup = "Rust",
+      keymaps = {
+        { ",rr", "<cmd>RustRunnables<cr>", description = "Run Runnables", opts = silent_opts },
+      },
+    },
+    {
       itemgroup = "DAP",
       keymaps = {
         { ",dR", ":lua require'dap'.run_to_cursor()<cr>", description = "Run to cursor", opts = silent_opts },

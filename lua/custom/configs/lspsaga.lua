@@ -17,4 +17,10 @@ require("lspsaga").setup {
       expand_or_jump = "<CR>",
     },
   },
+
+  outline = {
+    keys = {
+      expand_or_jump = "<CR>",
+    },
+  },
 }

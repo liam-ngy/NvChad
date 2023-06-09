@@ -131,6 +131,8 @@ local plugins = {
     config = function()
       require("toggleterm").setup {
         open_mapping = [[<c-\>]],
+        direction = "float",
+        shell = "/Users/liam.ng/.cargo/bin/nu",
       }
     end,
   },
@@ -364,14 +366,38 @@ local plugins = {
   -- },
 
   {
-    "mhanberg/elixir.nvim",
-    event = "BufReadPost",
-    requires = { "nvim-lua/plenary.nvim" },
+    "elixir-tools/elixir-tools.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      --  TODO: Move to its config file
+      local elixir = require "elixir"
+      local elixirls = require "elixir.elixirls"
+      local path_to_elixirls = vim.fn.expand "/Users/liam.ng/.elixir-ls/release/language_server.sh"
+
+      elixir.setup {
+        credo = {},
+        elixirls = {
+          enabled = true,
+          cmd = path_to_elixirls,
+          settings = elixirls.settings {
+            dialyzerEnabled = false,
+            enableTestLenses = false,
+          },
+        },
+      }
+    end,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
   },
 
   -- Testing
   {
     "jfpedroza/neotest-elixir",
+    event = "VimEnter",
+  },
+  {
+    "https://github.com/rouge8/neotest-rust",
     event = "VimEnter",
   },
   {
@@ -381,6 +407,11 @@ local plugins = {
       require("neotest").setup {
         adapters = {
           require "neotest-elixir",
+        },
+
+        require "neotest-rust" {
+          args = { "--no-capture" },
+          dap_adapter = "lldb",
         },
       }
     end,
@@ -397,6 +428,15 @@ local plugins = {
     event = "BufReadPost",
     config = function()
       require "custom.configs.rust-tools"
+    end,
+  },
+
+  {
+    "saecki/crates.nvim",
+    event = "BufRead Cargo.toml",
+    requires = { { "nvim-lua/plenary.nvim" } },
+    config = function()
+      require("crates").setup()
     end,
   },
 
